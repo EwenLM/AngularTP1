@@ -1,7 +1,8 @@
 <div>
   <ul>
-    <li *ngFor="let city of cities" class="list-group-item border rounded m-2 p-3" [ngClass]="getBgColor(city)" >
+    <li *ngFor="let city of cities; let i = index" class="list-group-item border rounded m-2 p-3" [ngClass]="getBgColor(city)" >
       <h3 [ngClass]="getTextColor(city)">{{ city.name }}</h3>
+      <button class="btn btn-warning" (click)="citiesService.onSwitch(city)">{{ city.attribut }}</button>
       <input type="text" class="form-control" [(ngModel)]="city.name" />
     </li>
   </ul>

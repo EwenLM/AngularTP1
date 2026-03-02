@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 //Import de l'intercace City
 import { City } from '../city';
-
+//Import du service Cities
+import { Cities } from '../Services/cities/cities';
 
 @Component({
   selector: 'app-races',
@@ -12,15 +13,17 @@ import { City } from '../city';
   templateUrl: './races.html',
   styleUrl: './races.css',
 })
-export class Races implements OnInit {
+export class Races {
   // Variables
   cities: City[] = [];
-  city1: City = { name: 'Lyon' };
-  city2: City = { name: 'London' };
   bgcolor1: string = 'bg-success bg-opacity-50';
   bgcolor2: string = 'bg-danger bg-opacity-50';
   textcolor1: string = 'text-success';
   textcolor2: string = 'text-danger';
+
+  constructor(public citiesService: Cities) {
+    this.cities = this.citiesService.cities;
+  }
 
   //Fonctions pour retourner la couleur du bg et du text en fonction de la ville
   getBgColor(city: City): string {
@@ -42,9 +45,5 @@ export class Races implements OnInit {
       return '';
     }
   }
-  //Initialisation de la liste des villes
-  ngOnInit(): void {
-    this.cities.push(this.city1);
-    this.cities.push(this.city2);
-  }
+
 }
