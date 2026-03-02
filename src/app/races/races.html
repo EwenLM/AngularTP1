@@ -1,9 +1,8 @@
-
-<div class="table">
-    <input type="text" class="form-control" placeholder="Enter cities name">
-  <table>
-    <tr>
-      <td>{{ city.name }}</td>
-    </tr>
-  </table>
+<div>
+  <ul>
+    <li *ngFor="let city of cities" class="list-group-item border rounded">
+      <h3>{{ city.name }}</h3>
+      <input type="text" class="form-control" [ngClass]="color" [(ngModel)]="city.name" />
+    </li>
+  </ul>
 </div>
