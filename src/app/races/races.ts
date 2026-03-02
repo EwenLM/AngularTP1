@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-//import de l'intercace City
+//Import de l'intercace City
 import { City } from '../city';
 
 
@@ -17,18 +17,29 @@ export class Races implements OnInit {
   cities: City[] = [];
   city1: City = { name: 'Lyon' };
   city2: City = { name: 'London' };
-  color1: string = 'bg-success text-success';
-  color2: string = 'bg-danger text-danger';
-  color: string = '';
+  bgcolor1: string = 'bg-success bg-opacity-50';
+  bgcolor2: string = 'bg-danger bg-opacity-50';
+  textcolor1: string = 'text-success';
+  textcolor2: string = 'text-danger';
 
-  //fonction pour changer la couleur en fonction de la ville
-  changeColor(city: City) {
+  //Fonctions pour retourner la couleur du bg et du text en fonction de la ville
+  getBgColor(city: City): string {
     if (city.name === 'Lyon') {
-      this.color = this.color1;
+      return this.bgcolor1;
     } else if (city.name === 'London') {
-      this.color = this.color2;
+      return this.bgcolor2;
     } else {
-      this.color = '';
+      return '';
+    }
+  }
+
+  getTextColor(city: City): string {
+    if (city.name === 'Lyon') {
+      return this.textcolor1;
+    } else if (city.name === 'London') {
+      return this.textcolor2;
+    } else {
+      return '';
     }
   }
   //Initialisation de la liste des villes
