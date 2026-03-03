@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
-import { City } from '../../city';
+import { City } from '../city';
+import { Subject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class Cities {
-  cities: City[] = [
+
+  citiesSubject = new Subject<City[]>();
+
+  private cities: City[] = [
     { name: 'Lyon', attribut: 'Eteint' },
     { name: 'London', attribut: 'Allume' },
     { name: 'Paris', attribut: 'Eteint' },
@@ -20,5 +25,9 @@ export class Cities {
   }
   switchOffOne(i: number) {
     this.cities[i].attribut = 'Eteint';
+  }
+
+  emitCities() {
+    this.citiesSubject.next(this.cities.slice());
   }
 }
