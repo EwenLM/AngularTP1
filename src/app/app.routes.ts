@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Races } from './Components/races/races';
-import { Singlerace } from './Components/singlerace/singlerace;
+import { Singlerace } from './Components/singlerace/singlerace';
 
 
 export const routes: Routes = [
