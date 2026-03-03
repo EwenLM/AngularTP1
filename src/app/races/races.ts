@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 //Import de l'intercace City
 import { City } from '../city';
 //Import du service Cities
-import { Cities } from '../cities/cities';
+import { Cities } from '../Services/cities/cities';
 
 @Component({
   selector: 'app-races',
@@ -14,8 +14,6 @@ import { Cities } from '../cities/cities';
   styleUrl: './races.css',
 })
 export class Races {
-
-
   // Variables
   cities: City[] = [];
   bgcolor1: string = 'bg-success bg-opacity-50';
@@ -23,6 +21,9 @@ export class Races {
   textcolor1: string = 'text-success';
   textcolor2: string = 'text-danger';
 
+  constructor(public citiesService: Cities) {
+    this.cities = this.citiesService.cities;
+  }
 
   //Fonctions pour retourner la couleur du bg et du text en fonction de la ville
   getBgColor(city: City): string {
@@ -52,13 +53,4 @@ export class Races {
       this.citiesService.switchOffOne(index);
     }
   }
-  
-  constructor(private citiesService: Cities) {}
-
-  ngOnInit(): void {
-    this.citiesService.citiesSubject.subscribe((cities: City[]) => {
-      this.cities = cities;
-    });
-    this.citiesService.emitCities();}
-
 }
