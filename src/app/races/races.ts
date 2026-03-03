@@ -46,4 +46,11 @@ export class Races {
     }
   }
 
+  onSwitch(index: number) {
+    if (this.cities[index].attribut === 'Eteint') {
+      this.citiesService.switchOnOne(index);
+    } else if (this.cities[index].attribut === 'Allume') {
+      this.citiesService.switchOffOne(index);
+    }
+  }
 }

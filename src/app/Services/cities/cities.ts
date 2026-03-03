@@ -5,17 +5,16 @@ import { City } from '../../city';
   providedIn: 'root',
 })
 export class Cities {
-    cities: City[] = [
+  cities: City[] = [
     { name: 'Lyon', attribut: 'Eteint' },
     { name: 'London', attribut: 'Allume' },
-    ];
+  ];
 
-    //Methode pour changer l'attribut d'une ville
-    onSwitch(city: City): void {
-        if (city.attribut === 'Eteint') {
-            city.attribut = 'Allume';
-        } else {
-            city.attribut = 'Eteint';
-        }
-    }
+  //Methode pour changer l'attribut d'une ville
+  switchOnOne(i: number) {
+    this.cities[i].attribut = 'Allume';
+  }
+  switchOffOne(i: number) {
+    this.cities[i].attribut = 'Eteint';
+  }
 }
