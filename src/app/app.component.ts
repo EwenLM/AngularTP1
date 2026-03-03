@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Menu } from './menu/menu';
-import { Races } from './races/races';
+import { Menu } from './Components/menu/menu';
+import { Races } from './Components/races/races';
 @Component({
   selector: 'app-root',
-  imports: [Menu, Races],
+  imports: [Menu],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

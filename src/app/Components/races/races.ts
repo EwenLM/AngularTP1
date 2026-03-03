@@ -3,9 +3,9 @@ import { CommonModule, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 //Import de l'intercace City
-import { City } from '../city';
+import { City } from '../../city';
 //Import du service Cities
-import { Cities } from '../Services/cities/cities';
+import { Cities } from '../../Services/cities/cities';
 
 @Component({
   selector: 'app-races',
