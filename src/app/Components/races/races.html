@@ -6,6 +6,9 @@
       [ngClass]="getBgColor(city)"
     >
       <h3 [ngClass]="getTextColor(city)">{{ city.name }}</h3>
+      <a class="btn btn-sm btn-primary" [routerLink]="['/races', i]">
+        Détails
+      </a>
       <button class="btn btn-sm btn-success" *ngIf="city.attribut === 'Eteint'" (click)="onSwitch(i)">
         Allumer
       </button>

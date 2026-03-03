@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 //Import de l'intercace City
 import { City } from '../../city';
@@ -9,7 +10,7 @@ import { Cities } from '../../Services/cities/cities';
 
 @Component({
   selector: 'app-races',
-  imports: [CommonModule, FormsModule, NgClass],
+  imports: [CommonModule, FormsModule, NgClass, RouterLink],
   templateUrl: './races.html',
   styleUrl: './races.css',
 })

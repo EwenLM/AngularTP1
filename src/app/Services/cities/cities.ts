@@ -6,12 +6,12 @@ import { City } from '../../city';
 })
 export class Cities {
   cities: City[] = [
-    { name: 'Lyon', attribut: 'Eteint' },
-    { name: 'London', attribut: 'Allume' },
-    { name: 'Paris', attribut: 'Eteint' },
-    { name: 'New York', attribut: 'Allume' },
-    { name: 'Tokyo', attribut: 'Eteint' },
-    { name: 'Berlin', attribut: 'Allume' },
+    { name: 'Lyon', attribut: 'Eteint', caracteristique: 'Ville de la gastronomie' },
+    { name: 'London', attribut: 'Allume', caracteristique: 'Ville de l\'histoire' },
+    { name: 'Paris', attribut: 'Eteint', caracteristique: 'Ville de l\'art' },
+    { name: 'New York', attribut: 'Allume', caracteristique: 'Ville du commerce' },
+    { name: 'Tokyo', attribut: 'Eteint', caracteristique: 'Ville de la technologie' },
+    { name: 'Berlin', attribut: 'Allume', caracteristique: 'Ville de la culture' },
   ];
 
   //Methode pour changer l'attribut d'une ville
