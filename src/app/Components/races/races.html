@@ -1,18 +1,24 @@
 <div>
   <ul>
     <li
-      *ngFor="let city of cities | slice :0 :4 ; let i = index"
+      *ngFor="let city of cities; let i = index"
       class="list-group-item border rounded m-2 p-3"
       [ngClass]="getBgColor(city)"
     >
       <h3 [ngClass]="getTextColor(city)">{{ city.name }}</h3>
-      <a class="btn btn-sm btn-primary" [routerLink]="['/races', i]">
-        Détails
-      </a>
-      <button class="btn btn-sm btn-success" *ngIf="city.attribut === 'Eteint'" (click)="onSwitch(i)">
+      <a class="btn btn-sm btn-primary" [routerLink]="['/races', i]"> Détails </a>
+      <button
+        class="btn btn-sm btn-success"
+        *ngIf="city.attribut === 'Eteint'"
+        (click)="onSwitch(i)"
+      >
         Allumer
       </button>
-      <button class="btn btn-sm btn-danger" *ngIf="city.attribut === 'Allume'" (click)="onSwitch(i)">
+      <button
+        class="btn btn-sm btn-danger"
+        *ngIf="city.attribut === 'Allume'"
+        (click)="onSwitch(i)"
+      >
         Eteindre
       </button>
 
