@@ -1,0 +1,4 @@
+<div class="container d-flex flex-center">
+    <button class="btn btn-success" *ngIf="!auth.isAuthenticated()" (click)="login()">Login</button>
+    <p *ngIf="auth.isAuthenticated()">Vous êtes connecté !</p>
+</div>
