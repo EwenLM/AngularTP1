@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { City } from '../../city';
 import { Cities } from '../../Services/cities/cities';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-singlerace',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './singlerace.html',
   styleUrl: './singlerace.css',
 })
