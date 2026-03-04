@@ -1,7 +1,7 @@
 <div>
   <ul>
     <li
-      *ngFor="let city of cities | slice :0 :4 ; let i = index"
+      *ngFor="let city of cities;let i = index"
       class="list-group-item border rounded m-2 p-3"
       [ngClass]="getBgColor(city)"
     >
