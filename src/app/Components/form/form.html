@@ -1,0 +1,22 @@
+<div class="d-flex flex-column justify-content-center align-center">
+    <h1>Ajout de ville</h1>
+    <form class="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="mb-3 form-group">
+            <label for="name" class="form-label">Nom de la ville</label>
+            <input type="text" class="form-control" id="name" ngModel  name="name" required>
+        </div>
+        <div class="mb-3 form-group">
+            <label for="attribut" class="form-label">Attribut</label>
+            <select name="attribut" id="attribut" ngModel  required>
+                <option value="Allume">Allume</option>
+                <option value="Eteint">Eteint</option>
+            </select>
+        </div>
+        <div class="mb-3 form-group">
+            <label for="caracteristique" class="form-label">Caractéristique de la ville</label>
+            <textarea type="text" class="form-control" id="caracteristique" ngModel name="caracteristique" required>
+            </textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="f.invalid" >Ajouter</button>
+    </form>
+</div>
