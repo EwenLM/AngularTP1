@@ -1,6 +1,6 @@
 <div class="d-flex flex-column justify-content-center align-center">
     <h1>Ajout de ville</h1>
-    <form class="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <form class="cityForm" (ngSubmit)="onSubmit()" >
         <div class="mb-3 form-group">
             <label for="name" class="form-label">Nom de la ville</label>
             <input type="text" class="form-control" id="name" ngModel  name="name" required>
@@ -17,6 +17,6 @@
             <textarea type="text" class="form-control" id="caracteristique" ngModel name="caracteristique" required>
             </textarea>
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="f.invalid" >Ajouter</button>
+        <button type="submit" class="btn btn-primary" [disabled]="cityForm.invalid" >Ajouter</button>
     </form>
 </div>

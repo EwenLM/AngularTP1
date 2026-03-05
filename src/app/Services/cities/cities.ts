@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { City } from '../../city';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Cities {
-  citiesSubject = new Subject<City[]>();
+  // BehaviorSubject privé pour stocker et émettre les villes
+  private citiesSubject = new BehaviorSubject<City[]>([]);
+  
+  // Observable public pour les composants
+  cities$: Observable<City[]> = this.citiesSubject.asObservable();
 
   private cities: City[] = [
     { name: 'Lyon', attribut: 'Eteint', caracteristique: 'Ville de la gastronomie' },
@@ -17,12 +21,19 @@ export class Cities {
     { name: 'Berlin', attribut: 'Allume', caracteristique: 'Ville de la culture' },
   ];
 
+  constructor() {
+    // Émet la valeur initiale au démarrage du service
+    this.emitCities();
+  }
+
   //Methode pour changer l'attribut d'une ville
   switchOnOne(i: number) {
     this.cities[i].attribut = 'Allume';
+    this.emitCities();  // Notification automatique
   }
   switchOffOne(i: number) {
     this.cities[i].attribut = 'Eteint';
+    this.emitCities();  // Notification automatique
   }
 
   //Methode pour récupérer une ville par son index
@@ -30,6 +41,8 @@ export class Cities {
     return this.cities[id];
   }
 
+
+  
   addCity(name: string, attribut: string, caracteristique: string) {
     const cityObject = { name: '', attribut: '', caracteristique: '' };
     cityObject.name = name;
