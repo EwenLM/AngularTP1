@@ -75,4 +75,13 @@ export class Races {
   ngOnDestroy(): void {
     this.mysubscription.unsubscribe();
   }
+
+  onSave(){
+    this.citiesService.saveCityToServer();
+  }
+
+  onFetch(){
+    this.citiesService.getCitiesFromServer();
+  }
+
 }

@@ -35,5 +35,7 @@ export class Form implements OnInit {
     this.cities.addCity(formValue.name, formValue.attribut, formValue.caracteristique);
     this.router.navigate(['/races']);
   }
+
+
 }
 

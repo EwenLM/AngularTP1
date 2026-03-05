@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { City } from '../../city';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class Cities {
   // BehaviorSubject privé pour stocker et émettre les villes
   private citiesSubject = new BehaviorSubject<City[]>([]);
-  
+
   // Observable public pour les composants
   cities$: Observable<City[]> = this.citiesSubject.asObservable();
 
@@ -21,7 +22,7 @@ export class Cities {
     { name: 'Berlin', attribut: 'Allume', caracteristique: 'Ville de la culture' },
   ];
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
     // Émet la valeur initiale au démarrage du service
     this.emitCities();
   }
@@ -29,11 +30,11 @@ export class Cities {
   //Methode pour changer l'attribut d'une ville
   switchOnOne(i: number) {
     this.cities[i].attribut = 'Allume';
-    this.emitCities();  // Notification automatique
+    this.emitCities(); // Notification automatique
   }
   switchOffOne(i: number) {
     this.cities[i].attribut = 'Eteint';
-    this.emitCities();  // Notification automatique
+    this.emitCities(); // Notification automatique
   }
 
   //Methode pour récupérer une ville par son index
@@ -41,8 +42,6 @@ export class Cities {
     return this.cities[id];
   }
 
-
-  
   addCity(name: string, attribut: string, caracteristique: string) {
     const cityObject = { name: '', attribut: '', caracteristique: '' };
     cityObject.name = name;
@@ -54,5 +53,30 @@ export class Cities {
 
   emitCities() {
     this.citiesSubject.next(this.cities);
+  }
+
+  saveCityToServer() {
+    this.httpClient
+      .put(
+        'https://races-b599d-default-rtdb.europe-west1.firebasedatabase.app/cities.json',
+        this.cities,
+      )
+      .subscribe(
+        () => console.log('Enregistrement réussi !'),
+        (error) => console.error("Erreur lors de l'enregistrement : ", error),
+      );
+  }
+
+  getCitiesFromServer() {
+    this.httpClient
+      .get<City[]>('https://races-b599d-default-rtdb.europe-west1.firebasedatabase.app/cities.json')
+      .subscribe(
+        (cities) => {
+          this.cities = cities;
+          this.emitCities();
+          console.log('Récupération des villes réussie !');
+        },
+        (error) => console.error('Erreur lors de la récupération des villes : ', error),
+      );
   }
 }
