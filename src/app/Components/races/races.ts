@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgClass } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 
@@ -12,7 +11,7 @@ import { Cities } from '../../Services/cities/cities';
 
 @Component({
   selector: 'app-races',
-  imports: [CommonModule, FormsModule, NgClass, RouterLink],
+  imports: [CommonModule, NgClass, RouterLink],
   templateUrl: './races.html',
   styleUrl: './races.css',
 })
@@ -54,25 +53,22 @@ export class Races {
   }
 
    //Met à jour l'attribut de la ville en fonction de son état actuel
-  //émet la nouvelle valeur de cities à chaque changement
   onSwitch(index: number) {
     if (this.cities[index].attribut === 'Eteint') {
       this.citiesService.switchOnOne(index);
-      this.citiesService.emitCities();
     } else if (this.cities[index].attribut === 'Allume') {
       this.citiesService.switchOffOne(index);
-      this.citiesService.emitCities();
     }
   }
 
 
-  // subscribe pour mettre à jour la variable cities à chaque fois que le service Cities émet une nouvelle valeur
-  // emitCities pour émettre la valeur initiale de cities
+  // subscribe à l'Observable cities$ pour recevoir les mises à jour
+  // Dernieres valeur obtenue avec BehaviorSubject
+  // Plus besoin de emitCities, tout est dans le service
   ngOnInit(): void {
-    this.citiesService.citiesSubject.subscribe((cities: City[]) => {
+    this.mysubscription = this.citiesService.cities$.subscribe((cities: City[]) => {
       this.cities = cities;
     });
-    this.citiesService.emitCities();
   }
 
   //Unsubscribe pour éviter les fuites de mémoire
