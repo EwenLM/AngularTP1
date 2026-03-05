@@ -1,22 +1,31 @@
 <div class="d-flex flex-column justify-content-center align-center">
     <h1>Ajout de ville</h1>
-    <form class="cityForm" (ngSubmit)="onSubmit()" >
+    <form class="cityForm" [formGroup]="cityForm" (ngSubmit)="onSubmit()">
         <div class="mb-3 form-group">
             <label for="name" class="form-label">Nom de la ville</label>
-            <input type="text" class="form-control" id="name" ngModel  name="name" required>
+            <input type="text" class="form-control" id="name" formControlName="name">
+            <div *ngIf="cityForm.get('name')?.invalid && cityForm.get('name')?.touched" class="text-danger">
+                Le nom est requis
+            </div>
         </div>
         <div class="mb-3 form-group">
             <label for="attribut" class="form-label">Attribut</label>
-            <select name="attribut" id="attribut" ngModel  required>
+            <select id="attribut" class="form-control" formControlName="attribut">
+                <option value="">-- Sélectionner --</option>
                 <option value="Allume">Allume</option>
                 <option value="Eteint">Eteint</option>
             </select>
+            <div *ngIf="cityForm.get('attribut')?.invalid && cityForm.get('attribut')?.touched" class="text-danger">
+                L'attribut est requis
+            </div>
         </div>
         <div class="mb-3 form-group">
             <label for="caracteristique" class="form-label">Caractéristique de la ville</label>
-            <textarea type="text" class="form-control" id="caracteristique" ngModel name="caracteristique" required>
-            </textarea>
+            <textarea class="form-control" id="caracteristique" formControlName="caracteristique"></textarea>
+            <div *ngIf="cityForm.get('caracteristique')?.invalid && cityForm.get('caracteristique')?.touched" class="text-danger">
+                La caractéristique est requise
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="cityForm.invalid" >Ajouter</button>
+        <button type="submit" class="btn btn-primary" [disabled]="cityForm.invalid">Ajouter</button>
     </form>
 </div>
